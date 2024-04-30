@@ -62,12 +62,12 @@ export default function Service() {
       Data = JSON.parse(JSON.stringify(data.data.services));
       const upd_Data = Data.filter((d) => d.catId === _id);
 
-      setData(upd_Data);
-    };
+      setData(upd_Data);   
+    }
     getDataFromApi(); 
   }, []);
 
-
+ 
   return (
     <ScrollView >
       <Navbar />

@@ -92,7 +92,7 @@ export default function Home() {
     );
 
     Data = JSON.parse(JSON.stringify(data.data.categories));
-
+    console.log(Data);
     setData(Data);
   };
   useEffect(() => {
@@ -158,7 +158,7 @@ export default function Home() {
       <FlatList
         style={{ marginTop: 20 }}
         data={data}
-        numColumns={1}
+        numColumns={3}
         ListFooterComponent={<View style={{ height: 200 }} />}
         renderItem={({ item }) => <Card item={item} />}
       />:<Text style={{marginLeft:70,fontSize:20,marginTop:30}}>Loading...</Text>}
@@ -171,21 +171,22 @@ const Card = ({ item }) => {
   const navigation = useNavigation();
   const toggleExpanded = () => {
     setExpanded(!expanded);
-  };
+  };          
 
-  const base_url = process.env.EXPO_PUBLIC_API_CAT;
-
+  const base_url = process.env.EXPO_PUBLIC_API_VEC;
+  
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate("service", { _id: item.id })}
     >
       <View style={styles.item}>
-        <Text style={{ margin: 8, fontSize: 23 }}>{item.name}</Text>
-        <Image
-          style={{ width: 250, height: 180 }}
-          source={{ uri: `${base_url}${item.images}` }}
-        />
-        <View>
+           <Image
+          style={{ width: 80, height: 80 }}
+          source={ {uri:`https://hometriangle.netwingsit.in/uploads/categories/vector/${item.vector}`}}
+        /> 
+        <Text style={{ margin: 0, fontSize: 15,fontWeight:"300" }}>{item.name}</Text>
+     
+        {/* <View>  
           <Text numberOfLines={expanded ? undefined : 3}>
             {item.description}
           </Text>
@@ -196,7 +197,7 @@ const Card = ({ item }) => {
               </Text>
             </TouchableOpacity>
           )}
-        </View>
+        </View> */}
       </View>
     </TouchableOpacity>
   );
@@ -253,7 +254,8 @@ const styles = StyleSheet.create({
   },
 
   item: {
-    paddingLeft: 30,
+    paddingLeft:5,
+    flex:1,
     backgroundColor: "#ffffff",
     borderRadius: 10,
     shadowColor: "#000000", // Shadow color
@@ -263,10 +265,10 @@ const styles = StyleSheet.create({
     elevation: 5, // Android-specific elevation property
     borderColor: "black",
     marginVertical: 8,
-    marginHorizontal: 16,
-    height: "fit-content",
+    marginHorizontal: 8,
+    height: "content-fit",
 
-    width: 350, // Adjust width based on your grid requirements
+    width: 115, // Adjust width based on your grid requirements
     color: "black",
   },
 });
